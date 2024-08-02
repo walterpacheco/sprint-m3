@@ -1,0 +1,48 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-image: url('../img/familia.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #081242;
+}
+
+h1 {
+    color: #315ba8;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.card {
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.card-title {
+    color: #343a40;
+}
+
+.form-group label {
+    font-weight: 400;
+}
+
+.form-check-label {
+    font-weight: bold;
+}
+
+.btn{
+    border-radius: 16px;
+    font-weight: 600;
+}
+
+
+.result {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-weight: bold;
+}
