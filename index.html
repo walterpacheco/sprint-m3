@@ -41,19 +41,19 @@
                 </div>
                 <div class="form-group">
                     <label for="sueldoBaseActual">Sueldo Base Actual:</label>
-                    <input type="number" id="sueldoBaseActual" class="form-control">
+                    <input type="text" id="sueldoBaseActual" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="sueldoSemestreAnterior">Sueldo Base Promedio Semestre Anterior:</label>
-                    <input type="number" id="sueldoSemestreAnterior" class="form-control">
+                    <input type="text" id="sueldoSemestreAnterior" class="form-control">
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" id="tieneCargas" class="form-check-input">
                     <label for="tieneCargas" class="form-check-label">¿Tiene cargas familiares autorizadas?</label>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="ocultar">
                     <label for="cantidadCargas">Cantidad de Cargas Familiares:</label>
-                    <input type="number" id="cantidadCargas" class="form-control" value="0">
+                    <input type="number" id="cantidadCargas" class="form-control"  placeholder="0">
                 </div>
                 <button class="btn btn-primary" onclick="mostrarDatos()">Mostrar Datos</button>
                 <div id="resultado" class="result"></div>
@@ -61,8 +61,8 @@
         </div>
     </div>
     <script type="module">
-        import { mostrarDatos } from './assets/js/script.js';
-        window.mostrarDatos = mostrarDatos; // Hacer accesible la función desde el HTML
+        import { mostrarDatos } from './assets/js/main.js';
+        window.mostrarDatos = mostrarDatos;
     </script>
 </body>
 </html>
