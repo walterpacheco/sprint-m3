@@ -2,7 +2,7 @@ body {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    background-image: url('../img/familia.png');
+    background-image: url('/assets/img/familia.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
