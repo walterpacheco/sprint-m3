@@ -1,12 +1,21 @@
-import './permanencia.js';
-import './utils.js';
+import { calcularEdad, calcularDiasHastaCumple } from './utils.js'; // Importa solo lo necesario
+import { calcularPermanencia } from './permanencia.js';
+
 // Función 1: Recibe nombre y apellidos y devuelve en mayúsculas
 function convertirMayusculas(nombre, apellidos) {
     return `${nombre.toUpperCase()} ${apellidos.toUpperCase()}`;
+}
 
-    function validarNombre(nombre) { const regex = /^[a-zA-Z\s]+$/; return regex.test(nombre); }
-    function validarApellidos(apellidos) { const regex = /^[a-zA-Z\s]+$/; return regex.test(apellidos); }
-    alert (validarNombre);
+// Función para validar nombre
+function validarNombre(nombre) {
+    const regex = /^[a-zA-Z\s]+$/;
+    return regex.test(nombre);
+}
+
+// Función para validar apellidos
+function validarApellidos(apellidos) {
+    const regex = /^[a-zA-Z\s]+$/;
+    return regex.test(apellidos);
 }
 
 // Función 2: Muestra datos y calcula valor de familiar
@@ -34,18 +43,28 @@ function calcularMontoTotalAsignacion(valorFamiliar, cantidadBeneficiarios) {
     return valorFamiliar * cantidadBeneficiarios;
 }
 
-// Función principal para mostrar todos los datos
-function mostrarDatos() {
+// Exporta la función para que pueda ser utilizada en otros módulos
+export function mostrarDatos() {
     const nombre = document.getElementById('nombre').value;
     const apellidos = document.getElementById('apellidos').value;
+    const fechaNacimiento = document.getElementById('fecha-nacimiento').value;
+    const fechaIngreso = document.getElementById('fecha-ingreso').value;
     const sueldoBaseActual = parseInt(document.getElementById('sueldoBaseActual').value);
     const sueldoSemestreAnterior = parseInt(document.getElementById('sueldoSemestreAnterior').value);
     const tieneCargas = document.getElementById('tieneCargas').checked;
     const cantidadCargas = parseInt(document.getElementById('cantidadCargas').value);
 
-    const valorFamiliarMensaje = calcularAsignacionFamiliar(nombre, apellidos, sueldoBaseActual, sueldoSemestreAnterior, tieneCargas);
-    let valorFamiliar = 0;
+    // Validar los nombres y apellidos
+    if (!validarNombre(nombre) || !validarApellidos(apellidos)) {
+        document.getElementById('resultado').innerHTML = `<p class="error">El nombre y los apellidos solo pueden contener letras y espacios.</p>`;
+        return;
+    }
 
+    const { edad, meses, dias } = calcularEdad(fechaNacimiento);
+    const diasHastaCumple = calcularDiasHastaCumple(fechaNacimiento);
+    const permanencia = calcularPermanencia(fechaIngreso);
+
+    let valorFamiliar = 0;
     if (tieneCargas) {
         if (sueldoSemestreAnterior <= 429899) {
             valorFamiliar = 16828;
@@ -65,6 +84,9 @@ function mostrarDatos() {
         <p>La persona de:</p>
         <p>Nombre: ${convertirMayusculas(nombre, apellidos).split(' ')[0]}</p>
         <p>Apellidos: ${convertirMayusculas(nombre, apellidos).split(' ').slice(1).join(' ')}</p>
+        <p>Edad: ${edad} años, ${meses} meses, ${dias} días</p>
+        <p>${diasHastaCumple}</p>
+        <p>Tiempo en la organización: ${permanencia.anios} años, ${permanencia.meses} meses, ${permanencia.dias} días</p>
         <p>Cargas: ${tieneCargas ? 'Sí' : 'No'}</p>
         <p>Cantidad de Cargas familiares: ${cantidadCargas}</p>
         <p>Está en el tramo que corresponde al ingreso del semestre anterior: ${sueldoSemestreAnterior}</p>

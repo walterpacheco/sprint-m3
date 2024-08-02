@@ -60,7 +60,9 @@
             </div>
         </div>
     </div>
-
-    <script type="module" src="./assets/js/script.js"></script>
+    <script type="module">
+        import { mostrarDatos } from './assets/js/script.js';
+        window.mostrarDatos = mostrarDatos; // Hacer accesible la función desde el HTML
+    </script>
 </body>
 </html>

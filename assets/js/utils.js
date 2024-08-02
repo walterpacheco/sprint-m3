@@ -1,13 +1,12 @@
 export function nombreDelDiaSegunFecha(fecha) {
-    const dias = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado','domingo', ];
+    const dias = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
     const dia = new Date(fecha).getDay();
     return dias[dia];
 }
 
-export function calcularEdad(fechaNacimiento) {
-    const fechaActual = new Date();
+export function calcularEdad(fechaNacimiento, fechaActual = new Date()) {
     const nacimiento = new Date(fechaNacimiento);
-    
+
     let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
     let meses = fechaActual.getMonth() - nacimiento.getMonth();
     let dias = fechaActual.getDate() - nacimiento.getDate();
@@ -16,7 +15,7 @@ export function calcularEdad(fechaNacimiento) {
         meses--;
         dias += new Date(fechaActual.getFullYear(), fechaActual.getMonth(), 0).getDate();
     }
-    
+
     if (meses < 0) {
         edad--;
         meses += 12;
@@ -41,7 +40,7 @@ export function calcularDiasHastaCumple(fechaNacimiento) {
     const fechaActual = new Date();
     const nacimiento = new Date(fechaNacimiento);
     const proximoCumple = new Date(fechaActual.getFullYear(), nacimiento.getMonth(), nacimiento.getDate());
-    
+
     if (proximoCumple < fechaActual) {
         proximoCumple.setFullYear(fechaActual.getFullYear() + 1);
     }
